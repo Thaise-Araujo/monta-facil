@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { API_URL } from "../config/api";
+
 interface Proposta {
   id: number;
   montador: string;
@@ -27,7 +29,7 @@ export default function Propostas() {
 
       const response =
         await fetch(
-          "http://localhost:8080/propostas"
+          `${API_URL}/propostas`
         );
 
       const data =
@@ -50,7 +52,7 @@ async function aceitarProposta(
 
     const response =
       await fetch(
-        `http://localhost:8080/propostas/${proposta.id}/aceitar`,
+        `${API_URL}/propostas/${proposta.id}/aceitar`,
         {
           method: "PUT"
         }
@@ -91,7 +93,7 @@ async function aceitarProposta(
     try {
 
       await fetch(
-        `http://localhost:8080/propostas/${id}/recusar`,
+        `${API_URL}/propostas/${id}/recusar`,
         {
           method: "PUT"
         }

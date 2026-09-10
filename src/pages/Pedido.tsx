@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { API_URL } from "../config/api";
+
 export default function Pedido() {
 
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ export default function Pedido() {
     try {
 
       const response = await fetch(
-        "http://localhost:8080/pedidos",
+        `${API_URL}/pedidos`,
         {
           method: "POST",
           body: formData

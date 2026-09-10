@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.png";
+import { API_URL } from "../config/api";
 
 export default function Cadastro() {
 
@@ -31,7 +32,7 @@ export default function Cadastro() {
 
       const response = await fetch(
 
-        "http://localhost:8080/usuarios",
+        `${API_URL}/usuarios`,
 
         {
           method: "POST",

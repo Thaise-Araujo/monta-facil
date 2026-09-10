@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { API_URL } from "../config/api";
+
 interface Pedido {
 
   id: number;
@@ -42,7 +44,7 @@ export default function MeusServicos() {
 
       const response =
         await fetch(
-          "http://localhost:8080/pedidos/aceitos"
+          `${API_URL}/pedidos/aceitos`
         );
 
       const data =
@@ -71,7 +73,7 @@ export default function MeusServicos() {
 
       const response = await fetch(
 
-        `http://localhost:8080/pedidos/${id}/executar`,
+        `${API_URL}/pedidos/${id}/executar`,
 
         {
           method: "PUT"
@@ -105,7 +107,7 @@ export default function MeusServicos() {
 
       const response = await fetch(
 
-        `http://localhost:8080/pedidos/${id}`,
+        `${API_URL}/pedidos/${id}`,
 
         {
           method: "DELETE"
@@ -190,7 +192,7 @@ export default function MeusServicos() {
               {pedido.imagem && (
 
                 <img
-                  src={`http://localhost:8080/uploads/${pedido.imagem}`}
+                  src={`${API_URL}/uploads/${pedido.imagem}`}
                   alt="Móvel"
                   className="w-full h-[250px] object-cover"
                 />

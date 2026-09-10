@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { API_URL } from "../config/api";
+
 interface Pedido {
   id: number;
   nomeMovel: string;
@@ -33,7 +35,7 @@ export default function ListaPedidos() {
 
       const response =
         await fetch(
-          "http://localhost:8080/pedidos"
+          `${API_URL}/pedidos`
         );
 
       const data =
@@ -76,7 +78,7 @@ export default function ListaPedidos() {
 
       const response =
         await fetch(
-          "http://localhost:8080/propostas",
+          `${API_URL}/propostas`,
           {
             method: "POST",
 
@@ -103,7 +105,7 @@ export default function ListaPedidos() {
 
       if (response.ok) {
   await fetch(
-    `http://localhost:8080/pedidos/${pedidoSelecionado.id}/em-analise`,
+    `${API_URL}/pedidos/${pedidoSelecionado.id}/em-analise`,
     {
       method: "PUT"
     }
@@ -196,7 +198,7 @@ export default function ListaPedidos() {
               {pedido.imagem && (
 
                 <img
-                  src={`http://localhost:8080/uploads/${pedido.imagem}`}
+                  src={`${API_URL}/uploads/${pedido.imagem}`}
                   alt=""
                   className="w-full h-60 object-cover"
                 />
