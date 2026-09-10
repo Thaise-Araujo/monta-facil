@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import logo from "../assets/logo.png";
+
 export default function Cadastro() {
 
   const navigate = useNavigate();
@@ -105,7 +107,7 @@ export default function Cadastro() {
         <div className="bg-[#111]/60 border border-white/10 backdrop-blur-2xl rounded-[40px] p-10 shadow-2xl">
 
           <img
-            src="/src/assets/logo.png"
+            src={logo}
             alt="Logo"
             className="w-[350px] drop-shadow-[0_0_40px_rgba(249,115,22,0.35)]"
           />

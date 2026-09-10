@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -36,31 +36,31 @@ export default function MeusServicos() {
     useState<Pedido[]>([]);
 
   // CARREGAR SERVIÇOS
- async function carregarPedidos() {
+  const carregarPedidos = useCallback(async () => {
 
-  try {
+    try {
 
-    const response =
-      await fetch(
+      const response =
+        await fetch(
           "http://localhost:8080/pedidos/aceitos"
+        );
+
+      const data =
+        await response.json();
+
+      setPedidos(data);
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Erro ao carregar serviços"
       );
 
-    const data =
-      await response.json();
+    }
 
-    setPedidos(data);
-
-  } catch (error) {
-
-    console.error(error);
-
-    alert(
-      "Erro ao carregar serviços"
-    );
-
-  }
-
-}
+  }, []);
 
   // EXECUTAR SERVIÇO
   async function executarPedido(
@@ -132,9 +132,10 @@ export default function MeusServicos() {
 
   useEffect(() => {
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- busca inicial dos serviços ao montar a tela; o setState só ocorre após o await, não de forma síncrona
     carregarPedidos();
 
-  }, []);
+  }, [carregarPedidos]);
 
   return (
 

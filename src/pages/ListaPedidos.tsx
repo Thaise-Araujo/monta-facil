@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface Pedido {
@@ -27,13 +27,7 @@ export default function ListaPedidos() {
   const [valor, setValor] =
     useState("");
 
-  useEffect(() => {
-
-    buscarPedidos();
-
-  }, []);
-
-  async function buscarPedidos() {
+  const buscarPedidos = useCallback(async () => {
 
     try {
 
@@ -53,7 +47,14 @@ export default function ListaPedidos() {
 
     }
 
-  }
+  }, []);
+
+  useEffect(() => {
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- busca inicial dos pedidos ao montar a tela; o setState só ocorre após o await, não de forma síncrona
+    buscarPedidos();
+
+  }, [buscarPedidos]);
 
   async function enviarProposta() {
 
