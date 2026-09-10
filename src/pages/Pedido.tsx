@@ -90,11 +90,11 @@ export default function Pedido() {
 
       }
 
-    } catch (error: any) {
+    } catch (error) {
 
   console.error(error);
 
-  alert(error);
+  alert(error instanceof Error ? error.message : String(error));
 
 }
   }

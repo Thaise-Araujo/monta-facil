@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+interface Proposta {
+  id: number;
+  montador: string;
+  valor: number;
+  status: string;
+}
+
 export default function Propostas() {
 
   const navigate = useNavigate();
 
   const [propostas, setPropostas] =
-    useState<any[]>([]);
+    useState<Proposta[]>([]);
 
   useEffect(() => {
 
@@ -36,7 +43,7 @@ export default function Propostas() {
 
   }
 async function aceitarProposta(
-  proposta: any
+  proposta: Proposta
 ) {
 
   try {
